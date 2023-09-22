@@ -1,0 +1,789 @@
+﻿<Window x:Class="SCMT364Project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCMT364Project"
+        xmlns:userControls="clr-namespace:SCMT364Project.UserControls"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="SCMT 364 Tool" Height="750" Width="800">
+    <Window.Resources>
+        <!--Main Grid Cells-->
+        <Style x:Key="mainGridCell" TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#7c848a"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Text" Value=""/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Gilroy"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CharacterCasing" Value="Upper"/>
+        </Style>
+
+        <!--Main Grid Cells-->
+        <Style x:Key="lbxInputCell" TargetType="ListBox">
+            <Setter Property="Foreground" Value="white" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Background" Value="#7c848a"/>
+            <Setter Property="FontFamily" Value="Gilroy"/>
+        </Style>
+        <Style x:Key="cbxInputCell" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="black" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Background" Value="#7c848a"/>
+            <Setter Property="FontFamily" Value="Gilroy"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <!--Workstation Cells-->
+        <Style x:Key="WSCell" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Text" Value=""/>
+            <Setter Property="Foreground" Value="white"/>
+        </Style>
+
+        <!--Workstation Border Cells-->
+        <Style x:Key="WSBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="#504f52"/>
+        </Style>
+
+        <!--Column Header Cells-->
+        <Style x:Key="ColumnHeaderCell" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!--Row Header Cells-->
+        <Style x:Key="rowHeader" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!--Row Header Border Cells-->
+        <!--<Style x:Key="rowBorder" TargetType="Border">
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="#666a6e"/>
+    </Style>-->
+
+        <!-- Column Header Border Cells-->
+        <Style x:Key="columnBorder" TargetType="Border">
+            <Setter Property="Background" Value="#7860c4"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <!-- Other Input Cells-->
+        <Style x:Key="OtherInputCell" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!--StatCell-->
+        <Style x:Key="StatCell" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Text" Value=""/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
+    </Window.Resources>
+    <Grid Background="#2c2f30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <!--<userControls:MenuBar Grid.Row="0"/>-->
+
+        <!--<userControls:LabelBar Grid.Row="1"/>-->
+        <!-- Main Input Section -->
+        <Grid Grid.Row="1" Margin="3,3,3,3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Margin="5" Name="TopLeft" Grid.Row="0" Grid.Column="0">
+                <!-- 00 Info Input Top left-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--#region Column Titles-->
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Border  Style="{StaticResource columnBorder}">
+                        <TextBlock Text="Task Name" Style="{StaticResource ColumnHeaderCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="2">
+                    <Border  Style="{StaticResource columnBorder}" >
+                        <TextBlock Text="Task Time (in seconds)" Style="{StaticResource ColumnHeaderCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="3">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="Parents (separate by space)" Style="{StaticResource ColumnHeaderCell}"/>
+                    </Border>
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region Row Numbering -->
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="1" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="2" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="3" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="4" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="5" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="5" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="6" Grid.Column="0">
+                    <Border BorderThickness="1" Style="{StaticResource columnBorder}">
+                        <TextBlock Text="6" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="7" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="7" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="8" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="8" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="9" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="9" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="10" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="10" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="11" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="11" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="12" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="12" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="13" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="13" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="14" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="14" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="15" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Text="15" Style="{StaticResource rowHeader}"/>
+                    </Border>
+                </Grid>
+                <!--#endregion-->
+                <!--#region Task Name Boxes-->
+                <!--Naming Convention: tn[box_num] eg tn4 or tn15-->
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tn1" TabIndex="0" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tn2" TabIndex="3" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tn3" TabIndex="6"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn4"  TabIndex="9" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="5" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn5"  TabIndex="12" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="6" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn6"  TabIndex="15" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="7" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn7"  TabIndex="18" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="8" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn8"  TabIndex="21" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="9" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn9"  TabIndex="24" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="10" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn10" TabIndex="27"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="11" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn11"  TabIndex="30" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="12" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn12"  TabIndex="33" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="13" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn13" TabIndex="36"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="14" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn14"  TabIndex="39" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="15" Grid.Column="1">
+                    <Border BorderThickness="1">
+                        <TextBox  Name="tn15"  TabIndex="42" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <!--#endregion-->
+                <!--#region Task Time Boxes-->
+                <Grid Grid.Row="1" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt1"  TabIndex="1" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt2"  TabIndex="4"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt3" TabIndex="7"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt4" TabIndex="10"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="5" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt5" TabIndex="13"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="6" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt6" TabIndex="16"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="7" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt7" TabIndex="19"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="8" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt8" TabIndex="22"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="9" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt9" TabIndex="25"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="10" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt10" TabIndex="28"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="11" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt11" TabIndex="31"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="12" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt12" TabIndex="34"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="13" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt13" TabIndex="37"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="14" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt14" TabIndex="40"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="15" Grid.Column="2">
+                    <Border BorderThickness="1">
+                        <TextBox Name="tt15" TabIndex="43"  Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <!--#endregion-->
+                <!--#region Parents Boxes-->
+                <Grid Grid.Row="1" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="2" Name="p1" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="5" Name="p2" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Row="3" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="8" Name="p3" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="11" Name="p4" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="5" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="14" Name="p5" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="6" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="17" Name="p6" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="7" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="20" Name="p7" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="8" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="23" Name="p8" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="9" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="26" Name="p9" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="10" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="29" Name="p10" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="11" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="32" Name="p11" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="12" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="35" Name="p12" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="13" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="38" Name="p13" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="14" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="41" Name="p14" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+                <Grid  Grid.Row="15" Grid.Column="3">
+                    <Border BorderThickness="1">
+                        <TextBox  TabIndex="44" Name="p15" Style="{StaticResource mainGridCell}"/>
+                    </Border>
+                </Grid>
+
+                <!--#endregion-->
+            </Grid>
+
+            <Grid Margin="5" Name="TopRight" Grid.Row="0" Grid.Column="1">
+                <!-- 01 WS Distro Output Top right-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Border Style="{StaticResource columnBorder}">
+                            <TextBlock Text="Station number" Style="{StaticResource ColumnHeaderCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Border Style="{StaticResource columnBorder}">
+                            <TextBlock Text="Tasks" Style="{StaticResource ColumnHeaderCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Border Style="{StaticResource columnBorder}">
+                            <TextBlock Text="Task Time (in seconds)" Style="{StaticResource ColumnHeaderCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <Border Style="{StaticResource columnBorder}">
+                            <TextBlock Text="Remaining Idle time (in seconds)" Style="{StaticResource ColumnHeaderCell}"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Border Style="{StaticResource WSBorder}">
+                            <TextBlock Name="txtWS1" Style="{StaticResource WSCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Border Style="{StaticResource WSBorder}">
+                            <TextBlock Name="txtWS2" Style="{StaticResource WSCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Border Style="{StaticResource WSBorder}">
+                            <TextBlock Name="txtWS3" Style="{StaticResource WSCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Border Style="{StaticResource WSBorder}">
+                            <TextBlock Name="txtWS4" Style="{StaticResource WSCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Border Style="{StaticResource WSBorder}">
+                            <TextBlock Name="txtWS5" Style="{StaticResource WSCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Border Style="{StaticResource WSBorder}">
+                            <TextBlock Name="txtWS6" Style="{StaticResource WSCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="6">
+                        <Border Style="{StaticResource WSBorder}">
+                            <TextBlock Name="txtWS7" Style="{StaticResource WSCell}"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid Margin="5" Name="BottomLeft" Grid.Row="1" Grid.Column="0">
+                <!-- 10 Prod Time input bottom left-->
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition/>
+                    <!--Is for Buttons and stuff-->
+                </Grid.RowDefinitions>
+
+                <Grid Margin="0,0,0,7" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--#region Labels for ProdTime-->
+                    <Grid Grid.Row="0" Grid.Column="0">
+                        <Border Style="{StaticResource columnBorder}">
+                            <TextBlock Text="Select Unit input" Style="{StaticResource OtherInputCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Border Style="{StaticResource columnBorder}">
+                            <TextBlock Text="Production Time (in hours)" Style="{StaticResource OtherInputCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="0">
+                        <Border Style="{StaticResource columnBorder}">
+                            <TextBlock Text="Unit Demand (in units)" Style="{StaticResource OtherInputCell}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="3" Grid.Column="0">
+                        <Border Style="{StaticResource columnBorder}">
+                            <TextBlock Text="Cycle Time (in seconds)" Style="{StaticResource OtherInputCell}"/>
+                        </Border>
+                    </Grid>
+                    <!--#endregion-->
+                    <!--#region ProdTime Input-->
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <Border>
+                            <ComboBox Name="cbxUnit" TabIndex="45" Style="{StaticResource cbxInputCell}">
+                                <ComboBoxItem>Seconds</ComboBoxItem>
+                                <ComboBoxItem>Minutes</ComboBoxItem>
+                            </ComboBox>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Border>
+                            <TextBox Name="txtProdTime"  TabIndex="45" Style="{StaticResource mainGridCell}" FontSize="12"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="1">
+                        <Border>
+                            <TextBox Name="txtUnitDemand" TabIndex="46"  Style="{StaticResource mainGridCell}" FontSize="12"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="3" Grid.Column="1">
+                        <Border Style="{StaticResource WSBorder}">
+                            <TextBlock Name="txtCT" Style="{StaticResource StatCell}" FontSize="12"/>
+                        </Border>
+                    </Grid>
+                    <!--#endregion-->
+
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.6*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Height="Auto" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <Border Style="{StaticResource columnBorder}">
+                                <TextBlock Text="Choose Preset" Style="{StaticResource OtherInputCell}"/>
+                            </Border>
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <Border Style="{StaticResource columnBorder}">
+                                <TextBlock Text="Choose Assignment Rule" Style="{StaticResource OtherInputCell}" TextAlignment="Center" TextWrapping="Wrap"/>
+                            </Border>
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="2">
+                            <Border Style="{StaticResource columnBorder}">
+                                <TextBlock Text="Choose Speed" Style="{StaticResource OtherInputCell}"/>
+                            </Border>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <ListBox Name="lbxPresets" TabIndex="47"  Style="{StaticResource lbxInputCell}" SelectionChanged="lbxPresets_SelectionChanged">
+                                <ListBoxItem>Preset 1</ListBoxItem>
+                                <ListBoxItem>Preset 2</ListBoxItem>
+                                <ListBoxItem>Preset Tutorial</ListBoxItem>
+                            </ListBox>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="1">
+                            <ListBox Name="lbxSortChoice" Style="{StaticResource lbxInputCell}" SelectedIndex="0">
+                                <ListBoxItem  TabIndex="47">Task Time</ListBoxItem>
+                                <ListBoxItem TabIndex="48">Follower Count</ListBoxItem>
+                            </ListBox>
+                        </Grid >
+                        <Grid Grid.Row="1" Grid.Column="2">
+                            <ListBox Name="lbxSpeed" Style="{StaticResource lbxInputCell}" SelectedIndex="0">
+                                <ListBoxItem TabIndex="49">Instant</ListBoxItem>
+                                <ListBoxItem TabIndex="50">Step-By-Step</ListBoxItem>
+                            </ListBox>
+                        </Grid>
+                    </Grid>
+                    <Grid Margin="0,3,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <!--<RowDefinition/>-->
+                            <!--<RowDefinition/>-->
+                        </Grid.RowDefinitions>
+                        <!--<Button TabIndex="51" Name="btnReloadPresets" Grid.Row="0" Content="Reload Presets" Click="btnReloadPresets_Click"/>-->
+                        <Button  TabIndex="52" Name="btnClear" Grid.Row="0" Content="Clear All" Click="btnClear_Click_1"/>
+                        <!--<Button  TabIndex="53" Name="btnSavePreset" Grid.Row="2" Content="Preset Menu" Click="btnSavePreset_Click"/>-->
+                        <Button  TabIndex="54" Name="btnRun" Grid.Row="1" Content="Run Algorithm" Click="btnRun_Click" />
+                        <Button  TabIndex="55" Name="btnTutorial" Grid.Row="2" Content="Run Tutorial" Click="btnTutorial_Click" />
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid Name="BottomRight" Grid.Row="1" Grid.Column="1">
+                <!-- 11 Eff Stat bottom right-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Style="{StaticResource ColumnHeaderCell}" Text="All Tasks"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Border Name="alltasks" Style="{StaticResource WSBorder}" Margin="2">
+                        <TextBlock  Name="txtAllTasks" Style="{StaticResource StatCell}" />
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Border  Style="{StaticResource columnBorder}">
+                        <TextBlock Style="{StaticResource ColumnHeaderCell}" Text="Available Tasks"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="0">
+                    <Border Name="Atasks" Style="{StaticResource WSBorder}" Margin="2">
+                        <TextBlock Name="txtABucket" Style="{StaticResource StatCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="0">
+                    <Border  Style="{StaticResource columnBorder}">
+                        <TextBlock Style="{StaticResource ColumnHeaderCell}" Text="Total Idle Time (in seconds)"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="5" Grid.Column="0">
+                    <Border Name="totidle"  Style="{StaticResource WSBorder}" Margin="2">
+                        <TextBlock Name="txtIdleTime" Style="{StaticResource StatCell}" FontSize="20"/>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Border Style="{StaticResource columnBorder}">
+                        <TextBlock Style="{StaticResource ColumnHeaderCell}" Text="Total Task Time (in seconds)"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Border Name="tottasks" Style="{StaticResource WSBorder}" Margin="2">
+                        <TextBlock Name="txtTotalTaskTime" Style="{StaticResource StatCell}" FontSize="20"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Border  Style="{StaticResource columnBorder}">
+                        <TextBlock Style="{StaticResource ColumnHeaderCell}" Text="Tasks added to Workstation"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Border Name="Dtasks" Style="{StaticResource WSBorder}" Margin="2">
+                        <TextBlock Name="txtDBucket" Style="{StaticResource StatCell}"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="1">
+                    <Border  Style="{StaticResource columnBorder}">
+                        <TextBlock Style="{StaticResource ColumnHeaderCell}" Text="Efficiency (in %)"/>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="5" Grid.Column="1">
+                    <Border Name="eff" Style="{StaticResource WSBorder}" Margin="2"/>
+                    <TextBlock Name="txtEff" Style="{StaticResource StatCell}" FontSize="20"/>
+
+                </Grid>
+            </Grid>
+            <!--<Button Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="0,2,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"/>-->
+        </Grid>
+        <Grid Grid.Row="2">
+            <TextBlock Margin="7,2,2,2" Foreground="white" Text="© 2023 Dario Maaskant"/>
+        </Grid>
+    </Grid>
+
+</Window>

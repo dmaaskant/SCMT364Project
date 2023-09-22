@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SCMT364Project", "SCMT364Project\SCMT364Project.csproj", "{5F99F123-F24C-4DAA-860F-99E64AD81895}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WorkstationToolSetup", "WorkstationToolSetup\WorkstationToolSetup.vdproj", "{4E7B9A3F-603E-4DC5-BDF3-37397B5C833C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F99F123-F24C-4DAA-860F-99E64AD81895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F99F123-F24C-4DAA-860F-99E64AD81895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F99F123-F24C-4DAA-860F-99E64AD81895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F99F123-F24C-4DAA-860F-99E64AD81895}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E7B9A3F-603E-4DC5-BDF3-37397B5C833C}.Debug|Any CPU.ActiveCfg = Debug
+		{4E7B9A3F-603E-4DC5-BDF3-37397B5C833C}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB08E855-0648-4679-8D79-42551FCD1E64}
+	EndGlobalSection
+EndGlobal

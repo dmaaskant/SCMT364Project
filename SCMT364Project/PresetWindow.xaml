@@ -1,0 +1,172 @@
+﻿<Window x:Class="SCMT364Project.PresetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCMT364Project"
+        mc:Ignorable="d"
+        Title="PresetWindow" Height="400" Width="300">
+    <Window.Resources>
+        <!--Main Grid Cells-->
+        <Style x:Key="mainGridCell" TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#7c848a"/>
+            <Setter Property="TextAlignment" Value="left"/>
+            <Setter Property="Text" Value=""/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Gilroy"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CharacterCasing" Value="lower"/>
+            <Setter Property="Margin" Value="0,3,0,3"/>
+        </Style>
+
+        <!--Main Grid Cells-->
+        <Style x:Key="lbxInputCell" TargetType="ListBox">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Background" Value="#7c848a"/>
+            <Setter Property="FontFamily" Value="Gilroy"/>
+            <Setter Property="Margin" Value="0,3,0,3"/>
+        </Style>
+        <!--Workstation Cells-->
+        <Style x:Key="WSCell" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Text" Value=""/>
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <!--Workstation Border Cells-->
+        <Style x:Key="WSBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <!--<Setter Property="Margin" Value="8"/>-->
+            <Setter Property="Background" Value="#504f52"/>
+        </Style>
+
+        <!--Column Header Cells-->
+        <Style x:Key="ColumnHeaderCell" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!--Row Header Cells-->
+        <Style x:Key="rowHeader" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!--Row Header Border Cells-->
+        <!--<Style x:Key="rowBorder" TargetType="Border">
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="#666a6e"/>
+    </Style>-->
+
+        <!-- Column Header Border Cells-->
+        <Style x:Key="columnBorder" TargetType="Border">
+            <Setter Property="Background" Value="#7860c4"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,3,0,3"/>
+        </Style>
+
+        <!-- Other Input Cells-->
+        <Style x:Key="OtherInputCell" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
+        <!--StatCell-->
+        <Style x:Key="StatCell" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Text" Value=""/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid >
+        <!--#region lol-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Border Style="{StaticResource columnBorder}">
+                <TextBlock Style="{StaticResource WSCell}" Text="Current presets"/>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Border >
+                <ListBox Style="{StaticResource lbxInputCell}" Name="lbxPresets" FontSize="20"/>
+            </Border>
+        </Grid>
+        <Grid Margin="0,3,0,3" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Button Click="btnCancel_Click" Name="btnCancel" Background="MediumVioletRed" FontSize="20" Height="50" Content="Cancel">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Button Click="btnDelete_Click" Name="btnDelete" Background="PaleVioletRed" FontSize="20" Height="50" Content="Delete">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Button Click="btnAddNew_Click" Name="btnAddNew" Background="LimeGreen" FontSize="20" Height="50" Content="Add New">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Grid>
+
+        <Grid Name="title" Visibility="Collapsed" Grid.Row="3">
+            <Border Style="{StaticResource columnBorder}">
+                <TextBlock Style="{StaticResource WSCell}"
+                        Text="New Preset Title (required)
+                            - No spaces and max 15 characters"/>
+            </Border>
+        </Grid>
+        <Grid Name="Title" Visibility="Collapsed" Grid.Row="4">
+            <TextBox Style="{StaticResource mainGridCell}" Name="txtTitle" VerticalAlignment="Top" FontSize="20"/>
+        </Grid>
+        <Grid Name="save" Visibility="Collapsed" Grid.Row="5">
+            <Button Click="btnSave_Click" Name="btnSave" Background="LightSteelBlue" FontSize="20" Height="50" Content="Save Preset">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
